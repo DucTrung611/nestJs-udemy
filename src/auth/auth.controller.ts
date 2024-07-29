@@ -13,11 +13,11 @@ export class AuthController {
     @Public()
     @UseGuards(LocalAuthGuard)
     @Post("/login")
-    handleLogin(@Request() req) {
+    handleLogin(@Request() req,) {
         return this.authService.login(req.user);
     }
 
-    @Public()
+    // @Public()
     @Get('/profile')
     getProfile(@Request() req) {
         return req.user;
