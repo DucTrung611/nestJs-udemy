@@ -51,10 +51,12 @@ export class CompaniesService {
 
   update(id: string, updateCompanyDto: UpdateCompanyDto, user: IUser) {
     return this.CompanyModel.updateOne({
-      _id: id,
-      ...updateCompanyDto,
-      updatedBy: user
-    });
+      _id: id
+    },
+      {
+        ...updateCompanyDto,
+        updatedBy: user
+      });
   }
 
   async remove(id: string, user: IUser) {
