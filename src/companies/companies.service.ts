@@ -45,8 +45,8 @@ export class CompaniesService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  findOne(id: string) {
+    return this.CompanyModel.findOne({ _id: id });
   }
 
   update(id: string, updateCompanyDto: UpdateCompanyDto, user: IUser) {
