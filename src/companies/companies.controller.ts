@@ -14,6 +14,7 @@ export class CompaniesController {
     return this.companiesService.create(createCompanyDto, user);
   }
 
+  @Public()
   @Get()
   @ResponseMessage("Fetch list company with paginate")
   findAll(
@@ -24,6 +25,7 @@ export class CompaniesController {
     return this.companiesService.findAll(+currentPage, +limit, qs);
   }
 
+  @Public()
   @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {

@@ -11,4 +11,7 @@ export class UpdateCompanyDto extends PartialType(CreateCompanyDto) {
 
     @IsNotEmpty({ message: 'description khong duoc de trong', })
     description: string;
+
+    @IsNotEmpty({ message: 'logo khong duoc de trong', })
+    logo: string;
 }

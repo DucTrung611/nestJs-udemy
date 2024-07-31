@@ -15,7 +15,9 @@ export class JobsController {
     return this.jobsService.create(createJobDto, user);
   }
 
+  @Public()
   @Get()
+  @ResponseMessage("fetch job with paginate")
   findAll(
     @Query("current") currentPage: string,
     @Query("pageSize") limit: string,

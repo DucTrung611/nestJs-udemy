@@ -27,10 +27,14 @@ export class User {
     company: {
         _id: mongoose.Schema.Types.ObjectId;
         email: string;
+        logo: string;
     };
 
     @Prop()
     role: string;
+
+    @Prop()
+    location: string;
 
     @Prop()
     refreshToken: string;

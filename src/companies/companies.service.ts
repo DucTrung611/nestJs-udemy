@@ -46,6 +46,9 @@ export class CompaniesService {
   }
 
   findOne(id: string) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return `not found user by id = ${id}`
+    }
     return this.CompanyModel.findOne({ _id: id });
   }
 

@@ -12,11 +12,11 @@ export class FilesController {
   @Public()
   @Post('upload')
   @ResponseMessage("upload single file")
-  @UseInterceptors(FileInterceptor('hoidanit'))
+  @UseInterceptors(FileInterceptor('fileUpload'))
   uploadFile(@UploadedFile(
     new ParseFilePipeBuilder()
       .addFileTypeValidator({
-        fileType: /^(jpg|jpeg|png|text\/plain|image\/png)$/i,
+        fileType: /^(jpg|jpeg|png|text\/plain|image\/png|image\/jpeg|image\/webp|application\/vnd.openxmlformats-officedocument.wordprocessingml.document|application\/msword|application\/pdf)$/i,
         // fileType: "text/plain",
       })
       .addMaxSizeValidator({

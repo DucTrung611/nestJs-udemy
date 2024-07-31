@@ -55,7 +55,7 @@ export class JobsService {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return "not found job"
     }
-    return this.JobModel.updateOne({ _id: id, ...updateJobDto, updatedBy: user });
+    return this.JobModel.updateOne({ _id: id }, { ...updateJobDto, updatedBy: user });
   }
 
   async remove(id: string, user: IUser) {
