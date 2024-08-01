@@ -1,15 +1,16 @@
 import { IsNotEmpty } from "class-validator";
 
 export class CreatePermissionDto {
-    @IsNotEmpty({ message: "name khong duoc de trong" })
-    name: string
+    @IsNotEmpty({ message: 'name không được để trống', })
+    name: string;
 
-    @IsNotEmpty({ message: "name khong duoc de trong" })
-    apiPath: string
+    @IsNotEmpty({ message: 'apiPath không được để trống', })
+    apiPath: string;
 
-    @IsNotEmpty({ message: "name khong duoc de trong" })
-    method: string
+    @IsNotEmpty({ message: 'method không được để trống', })
+    method: string;
 
-    @IsNotEmpty({ message: "name khong duoc de trong" })
-    module: string
+    @IsNotEmpty({ message: 'module không được để trống', })
+    module: string;
+
 }

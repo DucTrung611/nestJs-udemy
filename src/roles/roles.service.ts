@@ -6,6 +6,8 @@ import { Role, RoleDocument } from './schemas/role.schema';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import { IUser } from 'src/users/users.interface';
 import aqp from 'api-query-params';
+import mongoose from 'mongoose';
+import { ADMIN_ROLE } from 'src/databases/sample';
 
 @Injectable()
 export class RolesService {
@@ -53,15 +55,29 @@ export class RolesService {
     }
   }
 
-  findOne(id: string) {
-    return this.RoleModel.findOne({ _id: id });
+  async findOne(id: string) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new BadRequestException("not found role")
+    }
+    return (await this.RoleModel.findById(id)).populate({
+      path: "permissions",
+      select: { _id: 1, apiPath: 1, name: 1, method: 1, module: 1 }
+    });
   }
 
-  update(id: string, updateRoleDto: UpdateRoleDto, user: IUser) {
+  async update(id: string, updateRoleDto: UpdateRoleDto, user: IUser) {
+    // const isExist = await this.RoleModel.findOne({ name: updateRoleDto.name });
+    // if (isExist) {
+    //   throw new BadRequestException(`role name: ${updateRoleDto.name} da ton tai vui long doi role name khac`)
+    // }
     return this.RoleModel.updateOne({ _id: id }, { ...updateRoleDto, updatedBy: user });
   }
 
   async remove(id: string, user: IUser) {
+    const foundRole = await this.RoleModel.findById({ _id: id });
+    if (foundRole.name === "ADMIN") {
+      throw new BadRequestException("khong the xoa role admin")
+    }
     await this.RoleModel.updateOne({ _id: id }, { deletedBy: user });
     return this.RoleModel.softDelete({ _id: id });
   }

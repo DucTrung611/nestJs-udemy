@@ -5,16 +5,16 @@ export type PermissionDocument = HydratedDocument<Permission>;
 @Schema({ timestamps: true })
 export class Permission {
     @Prop()
-    name: string
+    name: string;
 
     @Prop()
-    apiPath: string
+    apiPath: string;
 
     @Prop()
-    method: string
+    method: string;
 
     @Prop()
-    module: string //thuộc modules nào ?
+    module: string;
 
     @Prop({ type: Object })
     createdBy: {
