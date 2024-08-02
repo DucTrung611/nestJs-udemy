@@ -33,9 +33,10 @@ export class AuthController {
     @ResponseMessage("get user information")
     @Get("account")
     async handleGetAccount(@User() user: IUser) {
-        const temp = await this.roleService.findOne(user.role._id) as any;
+        const temp = await this.roleService.findOne(user?.role?._id) as any;
         user.permissions = temp.permissions;
         return { user };
+
     }
 
     @Public()

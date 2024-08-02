@@ -12,7 +12,7 @@ export class Role {
     description: string
 
     @Prop()
-    isActive: string
+    isActive: boolean
 
     @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: Permission.name })
     permissions: Permission[];

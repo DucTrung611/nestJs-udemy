@@ -127,7 +127,7 @@ export class UsersService {
       return "not found user"
     }
     const foundUser = await this.userModel.findById({ _id: id })
-    if (foundUser.email === "admin@gmail.com") {
+    if (foundUser && foundUser.email === "admin@gmail.com") {
       throw new BadRequestException("khong the xoa tai khoan admin");
     }
     await this.userModel.updateOne({ _id: id }, { deletedBy: user })
