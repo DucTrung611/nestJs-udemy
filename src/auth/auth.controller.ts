@@ -6,8 +6,9 @@ import { RegisterUserDto } from 'src/users/dto/create-user.dto';
 import { Request, Response } from 'express';
 import { IUser } from 'src/users/users.interface';
 import { RolesService } from 'src/roles/roles.service';
+import { ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('auth')
 @Controller("/auth")
 export class AuthController {
     constructor(
